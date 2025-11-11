@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | ShopEase</title>
+  <link rel="stylesheet" href="designing.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">ShopEase</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html" class="active">Cart</a></li>
+      </ul>
+    </nav>
+    <!-- 🌗 Dark Mode Toggle -->
+<div class="theme-toggle">
+  <input type="checkbox" id="darkModeToggle">
+  <label for="darkModeToggle" class="toggle-label">
+    <span class="icon sun">☀️</span>
+    <span class="icon moon">🌙</span>
+    <span class="toggle-circle"></span>
+  </label>
+</div>
+
+  </header>
+
+  <section class="cart-page">
+    <h2>Your Shopping Cart</h2>
+    <div class="cart-container">
+      <!-- Items will be loaded here -->
+    </div>
+
+    <div class="cart-footer">
+      <p class="total">Total: $0.00</p>
+      <button id="checkoutBtn" class="checkout-btn">Checkout</button>
+      <button id="clearCart" class="clear-btn">Clear Cart</button>
+    </div>
+  </section>
+
+  <!-- 🧾 Payment Popup -->
+  <div id="paymentPopup" class="payment-popup">
+    <div class="popup-content">
+      <h3>Fake Payment Gateway 💳</h3>
+      <p>Enter your fake card details to complete the purchase.</p>
+      <input type="text" placeholder="Card Number">
+      <input type="text" placeholder="Expiry Date (MM/YY)">
+      <input type="text" placeholder="CVV">
+      <button id="confirmPayment">Pay Now</button>
+      <button id="closePopup">Cancel</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 ShopEase | All Rights Reserved</p>
+  </footer>
+
+  <script src="cart.js"></script>
+
+  <script>
+  const darkToggle = document.getElementById("darkModeToggle");
+  const body = document.body;
+
+  // Apply saved mode immediately
+  if (localStorage.getItem("darkMode") === "enabled") {
+    body.classList.add("dark-mode");
+    darkToggle.checked = true;
+  }
+
+  // Listen for toggle changes
+  darkToggle.addEventListener("change", () => {
+    if (darkToggle.checked) {
+      body.classList.add("dark-mode");
+      localStorage.setItem("darkMode", "enabled");
+    } else {
+      body.classList.remove("dark-mode");
+      localStorage.setItem("darkMode", "disabled");
+    }
+  });
+</script>
+
+</body>
+</html>

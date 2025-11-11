@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Homepage</title>
+  <link rel="stylesheet" href="designing.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+  <header class="navbar">
+    <!-- ⋮ Three-dot Menu (Left Corner) -->
+  <div class="nav-dots" id="navDots">⋮</div>
+
+  <!-- Animated Dropdown -->
+  <div class="nav-dropdown hidden" id="navDropdown">
+    <a href="profile.html">👤 Profile</a>
+    <a href="orders.html">🛒 My Orders</a>
+  </div>
+    <div class="auth-section">
+      <span id="userGreeting"></span>
+      <button id="loginBtn" class="auth-btn">Login</button>
+      <button id="signupBtn" class="auth-btn">Signup</button>
+      <button id="logoutBtn" class="auth-btn logout" style="display:none;">Logout</button>
+
+    </div>
+
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="catogries.html">Categories</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html" class="admin-link">Admin</a></li>
+
+
+      </ul>
+
+
+    </nav>
+
+    <div class="search">
+      <input type="text" placeholder="Search products...">
+      <button>Search</button>
+    </div>
+
+    <!-- 🌗 Dark Mode Toggle -->
+    <div class="theme-toggle">
+      <input type="checkbox" id="darkModeToggle">
+      <label for="darkModeToggle" class="toggle-label">
+        <span class="icon sun">🌙</span>
+        <span class="icon moon">☀️</span>
+        <span class="toggle-circle"></span>
+      </label>
+    </div>
+
+
+
+  </header>
+
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to ShopEase</h1>
+      <p>Your one-stop shop for everything you need!</p>
+      <a href="#" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+
+  <section class="categories">
+    <h2>Shop by Categories</h2>
+    <div class="category-container">
+      <div class="category-card">Men’s Fashion</div>
+      <div class="category-card">Women’s Fashion</div>
+      <div class="category-card">Electronics</div>
+      <div class="category-card">Home & Kitchen</div>
+    </div>
+  </section>
+
+
+
+  <section class="products">
+    <h2>Featured Products</h2>
+
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search products...">
+    </div>
+
+    <div class="product-container">
+
+    </div>
+  </section>
+
+  <section class="feedback-section">
+    <h2>📝 Customer Feedback</h2>
+    <p class="feedback-intro">We value your feedback! Please share your experience with ShopEase below.</p>
+
+    <div class="feedback-form">
+      <textarea id="userFeedback" placeholder="Write your feedback here..."></textarea>
+
+      <!-- ⭐ Star Rating -->
+      <div class="star-rating" id="starRating">
+        <span data-star="1">★</span>
+        <span data-star="2">★</span>
+        <span data-star="3">★</span>
+        <span data-star="4">★</span>
+        <span data-star="5">★</span>
+      </div>
+
+      <button id="submitFeedback">Submit Feedback</button>
+      <p id="feedbackMessage" class="hidden">✅ Thank you for your feedback!</p>
+    </div>
+
+    <!-- Sort dropdown -->
+    <div class="sort-feedback">
+      <label for="sortFeedback">Sort by Rating:</label>
+      <select id="sortFeedback">
+        <option value="high">Highest First</option>
+        <option value="low">Lowest First</option>
+      </select>
+    </div>
+
+    <div class="feedback-container"></div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 ShopEase | All Rights Reserved</p>
+    <div class="social-links">
+      <a href="#">Facebook</a> |
+      <a href="#">Instagram</a> |
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
+  <script src="api.js"></script>
+  <script src="feedback.js"></script>
+  <script src="theme.js"></script>
+  <script src="auth.js"></script>
+
+  <!-- ✅ Popup Notification -->
+  <div id="cartPopup" class="cart-popup">Item added to cart 🛍️</div>
+
+  <script>
+    const darkToggle = document.getElementById("darkModeToggle");
+    const body = document.body;
+
+    // Check saved mode
+    if (localStorage.getItem("darkMode") === "enabled") {
+      body.classList.add("dark-mode");
+      darkToggle.checked = true;
+    }
+
+    darkToggle.addEventListener("change", () => {
+      if (darkToggle.checked) {
+        body.classList.add("dark-mode");
+        localStorage.setItem("darkMode", "enabled");
+      } else {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("darkMode", "disabled");
+      }
+    });
+  </script>
+  <!-- 🔒 Login Popup -->
+  <div id="loginPopup" class="auth-popup">
+    <div class="popup-content">
+      <span class="close-btn" id="closeLoginPopup">&times;</span>
+      <h2>Login</h2>
+      <input type="email" id="popupLoginEmail" placeholder="Email" required>
+      <input type="password" id="popupLoginPassword" placeholder="Password" required>
+      <button id="popupLoginBtn">Login</button>
+      <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+    </div>
+  </div>
+
+  <!-- 📝 Signup Popup -->
+  <div id="signupPopup" class="auth-popup">
+    <div class="popup-content">
+      <span class="close-btn" id="closeSignupPopup">&times;</span>
+      <h2>Sign Up</h2>
+      <input type="text" id="popupSignupName" placeholder="Full Name" required>
+      <input type="email" id="popupSignupEmail" placeholder="Email" required>
+      <input type="password" id="popupSignupPassword" placeholder="Password" required>
+      <button id="popupSignupBtn">Sign Up</button>
+      <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+    </div>
+  </div>
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navDots = document.getElementById("navDots");
+    const navDropdown = document.getElementById("navDropdown");
+
+    // Toggle dropdown on click
+    navDots.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navDropdown.classList.toggle("show");
+    });
+
+    // Close dropdown when clicking outside
+    window.addEventListener("click", (e) => {
+      if (!navDots.contains(e.target) && !navDropdown.contains(e.target)) {
+        navDropdown.classList.remove("show");
+      }
+    });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const adminLink = document.getElementById("adminLink");
+    if (localStorage.getItem("isAdmin") !== "true" && adminLink) {
+      adminLink.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | ShopEase</title>
+  <link rel="stylesheet" href="designing.css">
+  <style>
+    .admin-container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
+
+    .admin-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .admin-stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      text-align: center;
+    }
+
+    .admin-orders {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background: #007bff;
+      color: white;
+    }
+
+    .logout-btn {
+      background: #ff4d4d;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-form {
+      max-width: 400px;
+      margin: 100px auto;
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-form input {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-form button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<script>
+  // 🚫 Block access if user is not admin
+  document.addEventListener("DOMContentLoaded", () => {
+    const isAdmin = localStorage.getItem("isAdmin");
+
+    if (isAdmin !== "true") {
+      alert("❌ Access Denied! Only the owner (admin) can access this page.");
+      window.location.href = "basic_structure.html"; // redirect back to your main website
+    }
+  });
+</script>
+
+<body>
+
+  <header class="navbar">
+    <div class="logo">ShopEase Admin</div>
+  </header>
+  <!-- Admin Login -->
+  <div class="login-form" id="adminLogin">
+    <h2>Admin Login</h2>
+    <input type="email" id="adminEmail" placeholder="Admin Email" required>
+    <input type="password" id="adminPassword" placeholder="Password" required>
+    <button id="adminLoginBtn">Login</button>
+  </div>
+  <!-- Admin Dashboard -->
+  <div class="admin-container hidden" id="adminPanel">
+    <div class="admin-header">
+      <h1>Welcome, Admin 👑</h1>
+      <button class="logout-btn" id="adminLogout">Logout</button>
+    </div>
+    <div class="admin-stats">
+      <div class="stat-card">
+        <h3>Total Users</h3>
+        <p id="totalUsers">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Orders</h3>
+        <p id="totalOrders">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Total Revenue</h3>
+        <p id="totalRevenue">$0.00</p>
+      </div>
+    </div>
+    <div class="admin-orders">
+      <h2>🧾 All Orders</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTable"></tbody>
+      </table>
+    </div>
+    <!-- Charts Section -->
+    <div class="charts-section" style="margin-top: 50px;">
+      <h2>📊 Analytics Overview</h2>
+      <canvas id="revenueChart" height="100"></canvas>
+      <canvas id="categoryChart" height="100" style="margin-top:30px;"></canvas>
+    </div>
+  </div>
+  <!-- Add Chart.js CDN before your admin.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- ✅ Login Success Popup -->
+  <div id="loginSuccessPopup" class="popup hidden">
+    <div class="popup-content">
+      <h2>✅ Welcome, Admin!</h2>
+      <p>You’ve successfully logged in to the ShopEase Dashboard.</p>
+      <button id="closePopupBtn">OK</button>
+    </div>
+  </div>
+  <!-- ❌ Login Failed Popup -->
+  <div id="loginFailedPopup" class="popup hidden">
+    <div class="popup-content failed">
+      <h2>❌ Login Failed</h2>
+      <p>Incorrect email or password. Please try again.</p>
+      <button id="closeFailedPopup">Try Again</button>
+    </div>
+  </div>
+  <!-- 🔒 Logout Confirmation Popup -->
+  <div id="logoutConfirmPopup" class="popup hidden">
+    <div class="popup-content">
+      <h3>Are you sure you want to log out?</h3>
+      <div class="popup-buttons">
+        <button id="confirmLogout" class="confirm-btn">Yes, Logout</button>
+        <button id="cancelLogout" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!-- 🕒 Session Timeout Warning Popup -->
+<div id="sessionWarningPopup" class="session-popup hidden">
+  <div class="session-popup-content">
+    <h2>⚠️ Session Timeout Warning</h2>
+    <p>You will be logged out in <b>1 minute</b> due to inactivity.</p>
+    <p>Do you want to stay logged in?</p>
+    <button id="stayLoggedInBtn">Stay Logged In</button>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>

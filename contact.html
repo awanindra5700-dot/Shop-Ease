@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | ShopEase</title>
+  <link rel="stylesheet" href="designing.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">ShopEase</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="catogries.html">Categories</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- 🌗 Dark Mode Toggle -->
+<div class="theme-toggle">
+  <input type="checkbox" id="darkModeToggle">
+  <label for="darkModeToggle" class="toggle-label">
+    <span class="icon sun">☀️</span>
+    <span class="icon moon">🌙</span>
+    <span class="toggle-circle"></span>
+  </label>
+</div>
+
+  </header>
+
+  <section class="contact-section">
+    <h2>Contact Us</h2>
+    <p class="contact-intro">Have any questions or feedback? We’d love to hear from you!</p>
+
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p>📍 123 Market Street, New Delhi, India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>📧 support@shopease.com</p>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <h3>Send a Message</h3>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ShopEase | All Rights Reserved</p>
+  </footer>
+
+  <!-- Popup -->
+  <div id="formPopup" class="form-popup">✅ Message Sent Successfully!</div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const popup = document.getElementById("formPopup");
+      popup.classList.add("show");
+      setTimeout(() => popup.classList.remove("show"), 2500);
+      this.reset();
+    });
+  </script>
+
+  <script>
+  const darkToggle = document.getElementById("darkModeToggle");
+  const body = document.body;
+
+  // Apply saved mode immediately
+  if (localStorage.getItem("darkMode") === "enabled") {
+    body.classList.add("dark-mode");
+    darkToggle.checked = true;
+  }
+
+  // Listen for toggle changes
+  darkToggle.addEventListener("change", () => {
+    if (darkToggle.checked) {
+      body.classList.add("dark-mode");
+      localStorage.setItem("darkMode", "enabled");
+    } else {
+      body.classList.remove("dark-mode");
+      localStorage.setItem("darkMode", "disabled");
+    }
+  });
+</script>
+
+</body>
+</html>
