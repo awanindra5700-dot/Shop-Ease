@@ -228,13 +228,19 @@
   const menuToggle = document.createElement("div");
   menuToggle.className = "menu-toggle";
   menuToggle.textContent = "☰";
-  document.querySelector(".navbar").appendChild(menuToggle);
 
-  const navLinks = document.querySelector(".nav-links");
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
 
   menuToggle.addEventListener("click", () => {
-    menuToggle.classList.toggle("active");
     navLinks.classList.toggle("active");
+  });
+
+  // Optional: Close menu when clicking a link
+  document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+    });
   });
 </script>
 
@@ -242,4 +248,5 @@
 
 
 </html>
+
 
