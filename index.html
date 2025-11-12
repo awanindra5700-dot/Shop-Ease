@@ -222,7 +222,21 @@
     }
   });
 </script>
+<script>
+  const menuToggle = document.createElement("div");
+  menuToggle.className = "menu-toggle";
+  menuToggle.textContent = "☰";
+  document.querySelector(".navbar").appendChild(menuToggle);
+
+  const navLinks = document.querySelector(".nav-links");
+
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navLinks.classList.toggle("active");
+  });
+</script>
 
 </body>
+
 
 </html>
