@@ -2123,7 +2123,7 @@ footer .social-links a:hover {
     position: absolute;
     top: 65px;
     right: 0;
-    background: #ff4b2b;
+    background: #777;
     flex-direction: column;
     width: 200px;
     height: 0;
@@ -2154,5 +2154,6 @@ footer .social-links a:hover {
     border-radius: 6px;
   }
 }
+
 
 
