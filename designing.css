@@ -1930,3 +1930,139 @@ footer .social-links a:hover {
     transform: scale(1);
   }
 }
+/* ============================================
+   🌐 RESPONSIVE DESIGN FIXES FOR ShopEase
+   ============================================ */
+
+/* General adjustments */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    padding: 10px 20px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .category-container {
+    gap: 15px;
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+}
+
+/* Tablet View */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .search {
+    margin-top: 10px;
+  }
+
+  .hero {
+    padding: 70px 20px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  .product-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card {
+    padding: 10px;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .navbar {
+    padding: 8px 15px;
+  }
+
+  .nav-links {
+    display: none; /* hide long menu */
+  }
+
+  /* Optional: show hamburger */
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  .menu-toggle.active + .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #ff4b2b;
+    border-radius: 8px;
+    padding: 10px 0;
+  }
+
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .product-card img {
+    height: 140px;
+  }
+
+  .category-card {
+    padding: 20px;
+    width: 80%;
+  }
+
+  footer {
+    font-size: 13px;
+    padding: 15px;
+  }
+}
+
