@@ -2159,3 +2159,26 @@ footer .social-links a:hover {
   }
 
 }
+/* Desktop: Auth buttons on the right */
+@media (min-width: 769px) {
+  #mobileAuth {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* Mobile: Auth buttons inside dropdown */
+@media (max-width: 768px) {
+  #mobileAuth {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 8px;
+  }
+}
+
