@@ -2065,52 +2065,52 @@ footer .social-links a:hover {
     padding: 15px;
   }
 }
-/* ========== RESPONSIVE NAVBAR ========== */
-
+/* ---------- NAVBAR FIX ---------- */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  color: white;
   padding: 15px 25px;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.logo {
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-.nav-links {
+.left-section {
   display: flex;
-  list-style: none;
-  gap: 25px;
-  transition: all 0.3s ease;
+  align-items: center;
+  gap: 20px;
 }
 
-.nav-links li a {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-}
-
-.nav-links li a:hover {
-  color: #ffe1e1;
-}
-
-/* ☰ Hamburger */
 .menu-toggle {
-  display: none;
   font-size: 28px;
+  display: none;
   cursor: pointer;
+}
+
+/* Desktop Nav */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
   color: white;
 }
 
-/* ========== MOBILE VIEW ========== */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ---------- MOBILE NAV ---------- */
 @media (max-width: 768px) {
+
   .menu-toggle {
     display: block;
   }
@@ -2118,31 +2118,24 @@ footer .social-links a:hover {
   .nav-links {
     position: absolute;
     top: 70px;
-    right: 0;
-    background: #ff4b2b;
+    left: 0;
+    width: 100%;
     flex-direction: column;
-    align-items: center;
-    width: 200px;
-    height: 0;
+    background: #ff4b2b;
+    text-align: center;
+    max-height: 0;
     overflow: hidden;
+    transition: 0.4s ease;
     opacity: 0;
-    border-radius: 0 0 0 10px;
-    transition: all 0.4s ease-in-out;
   }
 
   .nav-links.active {
-    height: auto;
+    max-height: 300px;
     padding: 15px 0;
     opacity: 1;
   }
 
-  .nav-links li {
-    padding: 10px 0;
-  }
-
-  .nav-links li a {
-    display: block;
-    width: 100%;
-    text-align: center;
+  .right-section {
+    display: none; /* Optional for clean mobile UI */
   }
 }
