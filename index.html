@@ -217,22 +217,14 @@
   });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
 
   menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
   });
-
-  // Optional: close menu when clicking a link
-  document.querySelectorAll("#navLinks a").forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.classList.remove("active");
-    });
-  });
-});
 </script>
+
 
   
 
@@ -240,6 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 </html>
+
 
 
 
