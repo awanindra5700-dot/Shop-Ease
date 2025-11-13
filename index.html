@@ -14,27 +14,30 @@
 
 <body>
   <header class="navbar">
-    <div class="logo">ShopEase</div> <div class="menu-toggle" id="menuToggle">☰</div>
-   <nav>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Shop</a></li>
-        <li><a href="catogries.html">Categories</a></li>
-        <li><a href="cart.html">Cart</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="admin.html" class="admin-link">Admin</a></li> </ul>
-</nav>
-<!-- Animated Dropdown -->
-  <div class="nav-dropdown hidden" id="navDropdown">
-    <a href="profile.html">👤 Profile</a>
-    <a href="orders.html">🛒 My Orders</a>
+
+  <div class="left-section">
+    <div class="logo">ShopEase</div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
   </div>
+
+  <!-- Navigation -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="basic_structure.html">Home</a></li>
+    <li><a href="#">Shop</a></li>
+    <li><a href="catogries.html">Categories</a></li>
+    <li><a href="cart.html">Cart</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="profile.html">Profile</a></li>
+  </ul>
+
+  <!-- Right Auth + Search + Dark Mode -->
+  <div class="right-section">
+    
     <div class="auth-section">
       <span id="userGreeting"></span>
       <button id="loginBtn" class="auth-btn">Login</button>
       <button id="signupBtn" class="auth-btn">Signup</button>
       <button id="logoutBtn" class="auth-btn logout" style="display:none;">Logout</button>
-
     </div>
 
     <div class="search">
@@ -42,7 +45,6 @@
       <button>Search</button>
     </div>
 
-    <!-- 🌗 Dark Mode Toggle -->
     <div class="theme-toggle">
       <input type="checkbox" id="darkModeToggle">
       <label for="darkModeToggle" class="toggle-label">
@@ -52,9 +54,10 @@
       </label>
     </div>
 
+  </div>
 
+</header>
 
-  </header>
 
 
   <section class="hero">
@@ -237,6 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 </html>
+
 
 
 
