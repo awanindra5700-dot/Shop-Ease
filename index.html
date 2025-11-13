@@ -224,10 +224,7 @@
   });
 </script>
 <script>
-  const menuToggle = document.createElement("div");
-  menuToggle.className = "menu-toggle";
-  menuToggle.textContent = "☰";
-
+document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
 
@@ -235,18 +232,22 @@
     navLinks.classList.toggle("active");
   });
 
-  // Optional: Close menu when clicking a link
+  // Optional: close menu when clicking a link
   document.querySelectorAll("#navLinks a").forEach(link => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("active");
     });
   });
+});
 </script>
+
+  
 
 </body>
 
 
 </html>
+
 
 
 
