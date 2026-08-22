@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase | Categories</title>
+  <link rel="stylesheet" href="designing.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">ShopEase</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="categories.html" class="active">Categories</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- 🌗 Dark Mode Toggle -->
+<div class="theme-toggle">
+  <input type="checkbox" id="darkModeToggle">
+  <label for="darkModeToggle" class="toggle-label">
+    <span class="icon sun">☀️</span>
+    <span class="icon moon">🌙</span>
+    <span class="toggle-circle"></span>
+  </label>
+</div>
+
+  </header>
+
+  <section class="category-page">
+    <h2>Browse by Category</h2>
+
+    <div class="category-buttons">
+      <button class="cat-btn" data-category="men's clothing">👕 Men's Clothing</button>
+      <button class="cat-btn" data-category="women's clothing">👗 Women's Clothing</button>
+      <button class="cat-btn" data-category="electronics">💻 Electronics</button>
+      <button class="cat-btn" data-category="jewelery">💍 Jewelry</button>
+    </div>
+
+    <div class="category-products">
+      <p>Select a category to view products.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ShopEase | All Rights Reserved</p>
+  </footer>
+
+  <script src="categories.js"></script>
+
+  <script>
+  const darkToggle = document.getElementById("darkModeToggle");
+  const body = document.body;
+
+  // Apply saved mode immediately
+  if (localStorage.getItem("darkMode") === "enabled") {
+    body.classList.add("dark-mode");
+    darkToggle.checked = true;
+  }
+
+  // Listen for toggle changes
+  darkToggle.addEventListener("change", () => {
+    if (darkToggle.checked) {
+      body.classList.add("dark-mode");
+      localStorage.setItem("darkMode", "enabled");
+    } else {
+      body.classList.remove("dark-mode");
+      localStorage.setItem("darkMode", "disabled");
+    }
+  });
+</script>
+
+</body>
+</html>

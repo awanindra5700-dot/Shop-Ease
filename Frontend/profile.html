@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | ShopEase</title>
+  <link rel="stylesheet" href="designing.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 40px;
+      background-color: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .profile-container {
+      width: 420px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    .profile-info p {
+      font-size: 16px;
+      color: #555;
+      margin: 8px 0;
+    }
+
+    .profile-input {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .profile-input input {
+      width: 90%;
+      padding: 8px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .save-btn {
+      background-color: #28a745;
+    }
+
+    .save-btn:hover {
+      background-color: #1e7e34;
+    }
+
+    .message {
+      color: green;
+      margin-top: 10px;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <h2>👤 My Profile</h2>
+
+    <div class="profile-info" id="profileInfo">
+      <p><strong>Name:</strong> <span id="userName">Guest</span></p>
+      <p><strong>Email:</strong> <span id="userEmail">Not Logged In</span></p>
+    </div>
+
+    <div class="profile-input" id="editSection">
+      <input type="text" id="editName" placeholder="Enter your name">
+      <input type="email" id="editEmail" placeholder="Enter your email">
+      <button class="btn save-btn" id="saveProfile">Save Changes</button>
+    </div>
+
+    <button class="btn" id="editBtn">Edit Profile</button>
+    <p class="message" id="saveMessage">✅ Profile updated successfully!</p>
+  </div>
+
+  <script>
+    // Load user info
+    const user = JSON.parse(localStorage.getItem("user")) || { name: "Guest", email: "Not Logged In" };
+
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const editName = document.getElementById("editName");
+    const editEmail = document.getElementById("editEmail");
+    const editBtn = document.getElementById("editBtn");
+    const saveBtn = document.getElementById("saveProfile");
+    const editSection = document.getElementById("editSection");
+    const saveMessage = document.getElementById("saveMessage");
+
+    // Display saved data
+    userName.textContent = user.name;
+    userEmail.textContent = user.email;
+
+    // Edit button clicked
+    editBtn.addEventListener("click", () => {
+      editSection.style.display = "block";
+      editName.value = user.name !== "Guest" ? user.name : "";
+      editEmail.value = user.email !== "Not Logged In" ? user.email : "";
+      editBtn.style.display = "none";
+    });
+
+    // Save button clicked
+    saveBtn.addEventListener("click", () => {
+      const updatedUser = {
+        name: editName.value.trim() || "Guest",
+        email: editEmail.value.trim() || "Not Logged In"
+      };
+
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      userName.textContent = updatedUser.name;
+      userEmail.textContent = updatedUser.email;
+
+      editSection.style.display = "none";
+      editBtn.style.display = "block";
+      saveMessage.style.display = "block";
+
+      setTimeout(() => saveMessage.style.display = "none", 2000);
+    });
+  </script>
+</body>
+</html>
